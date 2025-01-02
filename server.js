@@ -3,9 +3,15 @@ const wss = new WebSocket.Server({ port: 3001 });
 const admin = require("firebase-admin");
 
 const hostname = "192.168.4.28";
-//"192.168.4.28";
 require("dotenv").config();
-const serviceAccount = require(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
+const serviceAccountPath = process.env.FIREBASE_SERVICE_ACCOUNT;
+if (!serviceAccountPath) {
+  throw new Error(
+    "FIREBASE_SERVICE_ACCOUNT_KEY environment variable is not set"
+  );
+}
+
+const serviceAccount = require(serviceAccountPath);
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
