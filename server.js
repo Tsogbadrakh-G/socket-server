@@ -4,7 +4,8 @@ const admin = require("firebase-admin");
 
 const hostname = "192.168.4.28";
 //"192.168.4.28";
-const serviceAccount = require("./chat-app-secure-firebase-adminsdk-ic9nr-5ae6b63ca6.json");
+require("dotenv").config();
+const serviceAccount = require(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
