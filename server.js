@@ -4,19 +4,15 @@ const admin = require("firebase-admin");
 
 const hostname = "3.107.172.186";
 
-//("3.107.172.186");
+require("dotenv").config();
+const serviceAccountPath = process.env.FIREBASE_SERVICE_ACCOUNT;
+if (!serviceAccountPath) {
+  throw new Error(
+    "FIREBASE_SERVICE_ACCOUNT_KEY environment variable is not set"
+  );
+}
 
-//"192.168.4.28";
-
-// require("dotenv").config();
-// const serviceAccountPath = process.env.FIREBASE_SERVICE_ACCOUNT;
-// if (!serviceAccountPath) {
-//   throw new Error(
-//     "FIREBASE_SERVICE_ACCOUNT_KEY environment variable is not set"
-//   );
-// }
-
-const serviceAccount = require("./chat-app-secure-firebase-adminsdk-ic9nr-42ca162cbc.json");
+const serviceAccount = require(serviceAccountPath);
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
