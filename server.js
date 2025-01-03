@@ -3,6 +3,9 @@ const wss = new WebSocket.Server({ port: 3001 });
 const admin = require("firebase-admin");
 
 const hostname = "3.107.172.186";
+
+//"192.168.4.28";
+
 require("dotenv").config();
 const serviceAccountPath = process.env.FIREBASE_SERVICE_ACCOUNT;
 if (!serviceAccountPath) {
