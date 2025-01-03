@@ -2,7 +2,7 @@ const WebSocket = require("ws");
 const wss = new WebSocket.Server({ port: 3001 });
 const admin = require("firebase-admin");
 
-const hostname = "3.107.172.186";
+const hostname = "192.168.4.28";
 require("dotenv").config();
 const serviceAccountPath = process.env.FIREBASE_SERVICE_ACCOUNT;
 if (!serviceAccountPath) {
@@ -26,6 +26,10 @@ const port = 3000;
 
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
+// Endpoint to handle POST requests
+app.get("/home", (req, res) => {
+  res.status(200).send("hello server");
+});
 
 // Endpoint to handle POST requests
 app.post("/", (req, res) => {
